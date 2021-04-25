@@ -1,0 +1,63 @@
+{% extends 'mobile/base.html' %}
+{% block body_block %}
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% if orders %}
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+
+                                <tr>
+
+                                    <th>Image</th>
+                                    <th class="p-name">Product Name</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Options</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for order in orders%}
+                                <tr>
+
+                                    <td class="cart-pic first-row"><img src="{{order.product.image.url}}" height="100px" width="100px" alt="..."></td>
+                                    <td class="cart-title first-row">
+                                        <h5>{{order.product}}</h5>
+                                    </td>
+                                    <td class="p-price first-row">{{order.product.price}}</td>
+                                    <td class="p-price first-row">{{order.status}}</td>
+                                    <td class="p-price first-row"><a href="{% url 'cancel-order' order.id%}">Cancel order</a></td>
+
+
+                                    </tr>
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                    {%else%}
+                    <h3>no items ordered</h3>
+                    {%endif%}
+                    <div class="row">
+                            <div class="col-lg-4 offset-lg-4">
+                            <div class="proceed-checkout">
+                                <ul>
+
+                                    <li class="cart-total">Total <span>{{ total }}</span></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+{% endblock %}

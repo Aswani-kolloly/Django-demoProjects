@@ -1,0 +1,54 @@
+{% extends 'mobile/base.html' %}
+
+{% block body_block %}
+<!-- Register Section Begin -->
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                        <h2>{{ form_heading }}</h2>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {% for fields in form %}
+                            <div class="group-input">
+                                <label for="brand_name">Brand Name</label>
+                                {{fields}}
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="site-btn login-btn">{{ btn_caption }}</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% if brands %}
+<div class="container">
+ <table class="table table-dark table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Brands</th>
+        <th scope="col">Actions</th>
+          </tr>
+  </thead>
+  <tbody>
+  {% for brand in brands %}
+    <tr>
+      <td>{{ brand.id }}</td>
+      <td>{{ brand.brand_name }}</td>
+        <td>
+
+    <a href="{% url 'deleteBrand' brand.id %}">Delete</a>
+            <a href="{% url 'editBrand' brand.id %}">edit</a>
+
+        </td>
+
+    </tr>
+  {% endfor %}
+      </tbody>
+</table></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+
+    brands  (status -> completed)
+**************
+
+mobile/brands  - creates new brand
+mobile/brands/edit/id  - update brand with specific id
+mobile/brands/delete/id    - delete brand with specific id
+
+    product (status -> going on)
+***************
+
+mobile/products  - create new product
+mobile/products/edit/id - update prod with the specified id
+mobile/products/view/id - list all prod details with the specified id
+mobile/products/delete/id - delete prod with the specified id

@@ -1,0 +1,40 @@
+{% extends 'mobile/base.html' %}
+{% block body_block %}
+
+
+ <div class="container">
+
+        <div class="row">
+            {% for product in products%}
+<div class="col-12 col-md-4 col-lg-3 col-xl-3 col-xxl-3 my-3 ">
+
+    <div class="card">
+        <img src="{{product.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight:600;">{{ product.mobile_name }}</h5>
+      <p class="card-text " style="color:#e7ab3c;font-weight:600;">Price : {{ product.price }}</p>
+    <p class="card-text">{{ product.specs }}</p>
+      <p class="card-text">{{ product.desc }}</p>
+
+    <a href="{%url 'order-items' product.id %}" class="btn" style="background-color:#e7ab3c;outline:none;color:white;">Purchase</a>
+
+        </div>
+      </div>
+
+</div>
+            {%endfor%}
+        </div>
+
+ </div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+

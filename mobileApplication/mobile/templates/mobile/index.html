@@ -1,0 +1,34 @@
+{% extends 'mobile/base.html' %}
+{% load static %}
+{% block body_block %}
+<!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Popular Brands</li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        {% for brand in brands%}
+                        <div class="product-item">
+                            <div class="pi-pic ">
+                                <div class=" bg-dark d-flex align-items-center" style="height:330px">
+                                      <h2 class="mx-auto text-white">{{ brand.brand_name }}</h2>
+                                </div>
+                                <ul>
+
+                                    <li class="quick-view"><a href="{%url 'listProducts' brand.id %}">View Products</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
+{% endblock %}
