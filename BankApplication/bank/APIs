@@ -1,0 +1,134 @@
+
+Following are the REST API end points in the Bank Application
+*************************************************************
+
+1.  user creation:
+        Request URL :
+            POST : http://localhost:8000/api/bank/v1/register/
+            creates a new user account.
+        Request Body example:
+            {
+            "first_name": "test","last_name": "user","username": "test_user","password": "user123"
+            }
+
+        Response Body Example:
+        {
+            "first_name": "test","last_name": "user","username": "test_user","password": "user123"
+            }
+
+
+2. login
+    Request URL :
+            POST : http://localhost:8000/api/bank/v1/login/
+            Returns authentication token.
+    Request Body example:
+            {
+            "username": "test_user","password": "user123"
+            }
+
+    Response Body Example:
+        {
+        "token": "ffae03319e44074c33f8352720f7773b4f4fe122"
+        }
+3. creating bank account
+    Request URL :
+                GET : http://localhost:8000/api/bank/v1/create-account/
+                    Returns new account number
+                Request Body example:
+                    send no data.
+                Response Body Example:
+                    {
+                    "acno": 1002
+                     }
+    Request URL :
+                POST:http://localhost:8000/api/bank/v1/create-account/
+                    creates new bank account with the account num returned by the get method.
+                Request Body example:
+                    {
+                    "account_num":"1002","user_name":"test_user","balance":1000,"acnt_type":"savings"
+                      }
+
+                Response Body Example:
+                    {
+                    "account_num":"1002","user_name":"test_user","balance":1000,"acnt_type":"savings"
+                      }
+
+4. deposit
+    Request URL :
+            POST : http://localhost:8000/api/bank/v1/deposit/1002
+            deposit cash to the  account no 1002.
+    Request Body example:
+            {
+            "amount": "2000"
+            }
+
+    Response Body Example:
+        {
+        "msg": "amt added Current balance is 3000"
+        }
+
+5. withdraw
+    Request URL :
+            POST : http://localhost:8000/api/bank/v1/withdraw/1002
+            withdraw cash from the  account no 1002.
+    Request Body example:
+            {
+            "amount": "1000"
+            }
+
+    Response Body Example:
+             {
+             "msg": "amt deducted, Balance amount is 2000"
+               }
+6. balance check
+    Request URL :
+                GET : http://localhost:8000/api/bank/v1/balance/1002
+                do balance check on the account no 1002.
+        Request Body example:
+                sends no data
+        Response Body Example:
+                 { "account_num": 1002,"user_name": "test_user","balance": 2000,"acnt_type": "savings" }
+7. fund transfer
+    Request URL :
+                 POST : http://localhost:8000/api/bank/v1/send-money/
+                send money to another account
+        Request Body example:
+                { "account_num":1002,"to_acno":"1000","amount":1000}
+
+        Response Body Example:
+                 { "msg": "1000 has been sent to acno: 1000" }
+
+
+8. view transaction history
+    Request URL :
+                 GET : http://localhost:8000/api/bank/v1/view-transactions/1002
+                Shows all transaction history of the account no 1002
+        Request Body example:
+                sends no data.
+
+        Response Body Example:
+                 {
+    "All Debit Transactions": [
+        {
+            "account_num": "1002",
+            "to_acno": 1000,
+            "amount": 1000,
+            "date": "2021-05-15"
+        },
+        {
+            "account_num": "1002",
+            "to_acno": 1000,
+            "amount": 1000,
+            "date": "2021-05-15"
+        }
+    ],
+    "All credit transactions": [
+        {
+            "account_num": "1000",
+            "to_acno": 1002,
+            "amount": 3000,
+            "date": "2021-05-15"
+        }
+    ]
+}
+
